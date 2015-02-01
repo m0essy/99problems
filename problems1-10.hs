@@ -1,4 +1,4 @@
-module Problem1 (problem1, problem2, problem3, problem4, problem5) where 
+module Problem1 (problem1, problem2, problem3, problem4, problem5, problem6) where 
 
 problem1 :: [a] -> a
 problem1 = head . reverse 
@@ -17,6 +17,19 @@ problem4 list = loop list 0
     loop [] n = n
     loop (x:xs) n = loop xs (n + 1)
 
+-- reverse
 problem5 :: [a] -> [a]
 problem5 [] = []
 problem5 a = [last(a)] ++ problem5(init(a))
+             
+-- is pallindrome
+problem6 :: (Eq a) => [a] -> Bool
+problem6 [] = True
+problem6 list = loop list (reverse list)
+  where
+    loop :: (Eq a) => [a] -> [a] -> Bool
+    loop [] [] = True
+    loop (a:as) (b:bs) = if(a == b) then
+                 loop as bs
+               else
+                 False
